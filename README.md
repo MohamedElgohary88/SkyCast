@@ -1,2 +1,2 @@
-# SkyCast
+# Sky Cast
 SkyCast
