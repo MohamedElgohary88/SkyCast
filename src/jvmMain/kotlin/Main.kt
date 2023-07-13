@@ -19,7 +19,7 @@ fun App() {
 
 fun main() = application {
     val state = rememberWindowState()
-   // state.placement = WindowPlacement.Maximized
+    // state.placement = WindowPlacement.Maximized
     Window(onCloseRequest = ::exitApplication) {
         App()
     }

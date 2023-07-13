@@ -1,9 +1,10 @@
 package domain
 
-import data.remote.dto.LocationResponse
-import data.remote.dto.SkyCastResponse
+import data.remote.dto.current.Current
+import data.remote.dto.current.CurrentX
+import data.remote.dto.search.SearchItem
 
 interface SkyCastRepository {
-    suspend fun getWeather():SkyCastResponse
-    suspend fun getCity(name:String): LocationResponse
+    suspend fun getWeather(): Current
+    suspend fun getCity(name:String): SearchItem
 }
