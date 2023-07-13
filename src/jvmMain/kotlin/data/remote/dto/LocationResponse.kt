@@ -3,7 +3,7 @@ package data.remote.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Location(
+data class LocationResponse(
     val country: String,
     val lat: String,
     val localtime: String,

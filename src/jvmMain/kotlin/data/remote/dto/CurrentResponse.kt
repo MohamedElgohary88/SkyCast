@@ -3,7 +3,7 @@ package data.remote.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Current(
+data class CurrentResponse(
     val cloudcover: Int,
     val feelslike: Int,
     val humidity: Int,
