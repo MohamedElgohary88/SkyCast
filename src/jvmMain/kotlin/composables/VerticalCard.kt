@@ -25,7 +25,8 @@ fun VerticalCard(
     fromDegree:Int = 6,
     toDegree:Int = 9,
 ){
-    Row(modifier = Modifier.padding(horizontal = 18.dp , vertical = 14.dp)) {
+    Row(modifier = Modifier.background(Color.Green) //todo change that to Transparent but that for now to show it
+        .padding(horizontal = 18.dp , vertical = 14.dp)) {
         Image(
             painter = image,
             contentDescription = "",
@@ -36,7 +37,7 @@ fun VerticalCard(
             Text(text=weather, fontSize = 16.sp , color = Color.Gray) //todo change color and font size  to design system
         }
         Column (modifier = Modifier.padding(start = 80.dp)){
-            Text(text = "$toDegree°" , fontSize = 20.sp  , color = Color.LightGray) //todo change color and font size to design system
+            Text(text = "$toDegree°" , fontSize = 16.sp  , color = Color.LightGray) //todo change color and font size to design system
             Text(text="$fromDegree°", fontSize = 16.sp , color = Color.LightGray) //todo change color and font size  to design system
         }
 
