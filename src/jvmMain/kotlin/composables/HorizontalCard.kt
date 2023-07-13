@@ -27,7 +27,8 @@ fun HorizontalCard(
 
     Card(
         shape = RoundedCornerShape(16.dp),
-        backgroundColor = Color.Green //todo change that to Transparent but that for now to show it
+        elevation = 0.dp,
+        backgroundColor = Color(0x4F859BAC) //todo change that to Transparent but that for now to show it
     ) {
         Column(
             modifier = Modifier
