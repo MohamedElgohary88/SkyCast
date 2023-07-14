@@ -1,8 +1,5 @@
 package data.remote.dto.days
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Current(
     val cloud: Int,
     val condition: Condition,

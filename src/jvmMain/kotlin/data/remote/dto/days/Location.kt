@@ -1,8 +1,5 @@
 package data.remote.dto.days
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Location(
     val country: String,
     val lat: Double,

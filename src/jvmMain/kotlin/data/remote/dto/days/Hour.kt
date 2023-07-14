@@ -1,8 +1,5 @@
 package data.remote.dto.days
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Hour(
     val chance_of_rain: Int,
     val chance_of_snow: Int,

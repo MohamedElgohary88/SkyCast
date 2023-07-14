@@ -1,9 +1,8 @@
 package data.remote.dto.days
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Astro(
+    val is_moon_up: Int,
+    val is_sun_up: Int,
     val moon_illumination: String,
     val moon_phase: String,
     val moonrise: String,

@@ -3,7 +3,7 @@ package data.remote.dto.search
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class SearchItem(
+data class SearchItemResponse(
     val country: String,
     val id: Int,
     val lat: Double,
