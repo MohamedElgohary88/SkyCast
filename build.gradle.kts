@@ -5,7 +5,7 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-group = "com.chocolate.skycast"
+group = "com.chocolate.skycast "
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -23,6 +23,7 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation("org.jetbrains.compose.material3:material3-desktop:1.2.1")
             }
         }
         val jvmTest by getting
