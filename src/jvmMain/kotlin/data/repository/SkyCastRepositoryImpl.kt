@@ -24,5 +24,4 @@ class SkyCastRepositoryImpl(
     override suspend fun getForecastHours(cityName: String): WeatherForecastEntity {
         TODO("Not yet implemented")
     }
-
 }
