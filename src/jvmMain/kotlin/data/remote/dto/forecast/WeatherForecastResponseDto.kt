@@ -7,7 +7,8 @@ import data.remote.dto.base_response.Location
 /**
  * Created by Mohamed Elgohary on 7/14/2023.
  */
-data class WeatherForecastResponse(
+
+data class WeatherForecastResponseDto(
     val current: CurrentX,
     val forecasts: List<Forecast>,
     val location: Location

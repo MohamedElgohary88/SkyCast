@@ -1,12 +1,12 @@
 package domain.repository
 
-import data.remote.dto.current.Current
-import data.remote.dto.forecast.WeatherForecastResponse
-import data.remote.dto.search.SearchItemResponse
+import domain.entities.current.CurrentWeatherEntity
+import domain.entities.forecast.WeatherForecastEntity
+import domain.entities.search.SearchItemEntity
 
 interface SkyCastRepository {
-    suspend fun getWeather(cityName: String): Current
-    suspend fun getCityName(cityName: String): List<SearchItemResponse>
-    suspend fun getForecastDays(cityName: String): WeatherForecastResponse
-    suspend fun getForecastHours(cityName: String): WeatherForecastResponse
+    suspend fun getWeather(cityName: String): CurrentWeatherEntity
+    suspend fun getCityName(cityName: String): List<SearchItemEntity>
+    suspend fun getForecastDays(cityName: String): WeatherForecastEntity
+    suspend fun getForecastHours(cityName: String): WeatherForecastEntity
 }

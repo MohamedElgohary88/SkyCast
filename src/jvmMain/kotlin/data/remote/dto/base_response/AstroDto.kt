@@ -1,6 +1,6 @@
 package data.remote.dto.base_response
 
-data class Astro(
+data class AstroDto(
     val is_moon_up: Int,
     val is_sun_up: Int,
     val moon_illumination: String,
