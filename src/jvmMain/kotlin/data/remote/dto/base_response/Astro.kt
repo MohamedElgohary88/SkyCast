@@ -1,4 +1,4 @@
-package data.remote.dto.hour
+package data.remote.dto.base_response
 
 data class Astro(
     val is_moon_up: Int,

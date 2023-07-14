@@ -1,4 +1,4 @@
-package data.remote.dto.current
+package data.remote.dto.base_response
 
 import kotlinx.serialization.Serializable
 

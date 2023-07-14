@@ -1,6 +1,6 @@
-package data.remote.dto.hour
+package data.remote.dto.base_response
 
-data class Forecastday(
+data class Forecast(
     val astro: Astro,
     val date: String,
     val date_epoch: Int,

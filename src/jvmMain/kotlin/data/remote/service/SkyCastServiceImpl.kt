@@ -1,9 +1,8 @@
 package data.remote.service
 
-import data.remote.HttpRoutes
+import app.util.HttpRoutes
 import data.remote.dto.current.Current
-import data.remote.dto.days.ForecastDaysResponse
-import data.remote.dto.hour.ForecastHoursResponse
+import data.remote.dto.forecast.WeatherForecastResponse
 import data.remote.dto.search.SearchItemResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -29,16 +28,16 @@ class SkyCastServiceImpl(
     }
 
 
-    override suspend fun getForecastDays(cityName: String): ForecastDaysResponse {
+    override suspend fun getForecastDays(cityName: String): WeatherForecastResponse {
         return client.get {
             url(HttpRoutes.getForecastDays(cityName))
             contentType(ContentType.Application.Json)
         }.body()
     }
 
-    override suspend fun getForecastHours(cityName: String): ForecastHoursResponse {
+    override suspend fun getForecastHours(cityName: String): WeatherForecastResponse {
         return client.get {
-            url(HttpRoutes.searchCity(cityName))
+            url(HttpRoutes.getForecastHours(cityName))
             contentType(ContentType.Application.Json)
         }.body()
     }

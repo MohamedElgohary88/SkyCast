@@ -1,9 +1,9 @@
-package data.remote.dto.current
+package domain.entities.base_entity
 
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class Location(
+/**
+ * Created by Mohamed Elgohary on 7/14/2023.
+ */
+data class LocationEntity(
     val country: String,
     val lat: Double,
     val localtime: String,

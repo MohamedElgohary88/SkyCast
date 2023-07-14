@@ -20,13 +20,6 @@ import data.remote.service.SkyCastService
 @Composable
 @Preview
 fun App() {
-    val skyCastService = remember { SkyCastService.create() }
-    val cityName = "London"
-
-    val currentWeather by produceState<Current?>(initialValue = null) {
-        value = skyCastService.getWeather(cityName)
-    }
-
     MaterialTheme {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -35,10 +28,6 @@ fun App() {
         ) {
             Button(onClick = {}) {
                 Text("Mimo")
-            }
-            currentWeather?.let { weather ->
-                Text("Temperature: ${weather.current?.temp_c}")
-                Text("Humidity: ${weather.current?.humidity}")
             }
         }
     }

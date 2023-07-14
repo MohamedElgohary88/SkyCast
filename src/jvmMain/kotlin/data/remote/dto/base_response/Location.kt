@@ -1,5 +1,8 @@
-package data.remote.dto.hour
+package data.remote.dto.base_response
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Location(
     val country: String,
     val lat: Double,

@@ -1,4 +1,6 @@
-package data.remote.dto.hour
+package data.remote.dto.base_response
+
+import data.remote.dto.base_response.Condition
 
 data class Day(
     val avghumidity: Double,

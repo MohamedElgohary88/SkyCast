@@ -1,6 +1,11 @@
-package data.remote.dto.days
+package domain.entities.base_entity
 
-data class Current(
+import data.remote.dto.base_response.Condition
+
+/**
+ * Created by Mohamed Elgohary on 7/14/2023.
+ */
+data class WeatherDetailsEntity(
     val cloud: Int,
     val condition: Condition,
     val feelslike_c: Double,

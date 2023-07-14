@@ -1,6 +1,9 @@
-package data.remote.dto.days
+package domain.entities.base_entity
 
-data class Astro(
+/**
+ * Created by Mohamed Elgohary on 7/14/2023.
+ */
+data class AstroEntity(
     val is_moon_up: Int,
     val is_sun_up: Int,
     val moon_illumination: String,

@@ -1,10 +1,14 @@
-package data.remote.dto.days
+package domain.entities.base_entity
 
-data class Hour(
+
+/**
+ * Created by Mohamed Elgohary on 7/14/2023.
+ */
+data class HourEntity(
     val chance_of_rain: Int,
     val chance_of_snow: Int,
     val cloud: Int,
-    val condition: Condition,
+    val condition: ConditionEntity,
     val dewpoint_c: Double,
     val dewpoint_f: Double,
     val feelslike_c: Double,
