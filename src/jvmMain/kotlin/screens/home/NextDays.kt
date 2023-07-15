@@ -20,19 +20,6 @@ fun NextDays(){
             .background(Color(0x4F859BAC)) //todo change color to design system
             .padding(24.dp),
     ) {
-        LazyColumn(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            item {
-                Text( //todo change color and font to design system
-                    text = "Next Days",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 18.dp, top = 18.dp, bottom = 16.dp)
-                )
-            }
-            items(7) {
-                VerticalCard()
-            }
-        }
+
     }
 }

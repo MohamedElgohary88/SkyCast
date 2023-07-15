@@ -14,11 +14,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 
+
+@Preview
 @Composable
 fun HomeScreen(
-    city: String = "Baghdad",
-    time: String = "10:22",
-    dayOrNight: String = "AM"
+    // city: String = "Baghdad",
+    // time: String = "10:22",
+    //  dayOrNight: String = "AM"
 ) {
     var text by remember { mutableStateOf("Search") }
     Box {
@@ -34,20 +36,10 @@ fun HomeScreen(
             border = BorderStroke(0.dp, Color.Transparent),
             shape = RoundedCornerShape(16.dp),
         ) {
-            Row(
-                modifier = Modifier.fillMaxSize()
-            ) {
-                PresentDay(text = text , city = city , time = time , dayOrNight =  dayOrNight , onSearchValueChanged = {text = it})
-                NextDays()
-            }
-
 
         }
-
     }
 }
-
-
 
 @Preview
 @Composable
