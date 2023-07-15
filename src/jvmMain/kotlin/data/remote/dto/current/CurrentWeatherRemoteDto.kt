@@ -5,7 +5,7 @@ import data.remote.dto.base_response.Location
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CurrentResponseDto(
-    val current: CurrentX,
-    val location: Location
+data class CurrentWeatherRemoteDto(
+    val current: CurrentX?,
+    val location: Location?
 )

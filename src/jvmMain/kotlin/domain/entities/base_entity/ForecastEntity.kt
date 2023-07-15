@@ -5,8 +5,7 @@ package domain.entities.base_entity
  * Created by Mohamed Elgohary on 7/14/2023.
  */
 data class ForecastEntity(
-    val date: String,
-    val date_epoch: Int,
-    val day: DayEntity,
-    val hour: List<HourEntity>
+    val date: String?,
+    val day: DayEntity?,
+    val hour: List<HourEntity?>
 )

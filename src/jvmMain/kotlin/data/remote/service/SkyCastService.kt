@@ -1,16 +1,16 @@
 package data.remote.service
 
-import data.remote.dto.current.CurrentResponseDto
-import data.remote.dto.forecast.WeatherForecastResponseDto
-import data.remote.dto.search.SearchItemResponseDto
+import data.remote.dto.current.CurrentWeatherRemoteDto
+import data.remote.dto.forecast.WeatherForecastRemoteDto
+import data.remote.dto.search.SearchItemRemoteDto
 
 /**
  * Created by Mohamed Elgohary on 7/14/2023.*/
 
 interface SkyCastService {
-    suspend fun getWeather(cityName: String): CurrentResponseDto
-    suspend fun getCityName(cityName: String): List<SearchItemResponseDto>
-    suspend fun getForecastDays(cityName: String): WeatherForecastResponseDto
-    suspend fun getForecastHours(cityName: String): WeatherForecastResponseDto
+    suspend fun getWeather(cityName: String): CurrentWeatherRemoteDto
+    suspend fun getCityName(cityName: String): List<SearchItemRemoteDto>
+    suspend fun getForecastDays(cityName: String): WeatherForecastRemoteDto
+    suspend fun getForecastHours(cityName: String): WeatherForecastRemoteDto
 
 }

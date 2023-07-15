@@ -1,15 +1,14 @@
-package data.remote.dto.base_response
+package data.remote.dto.search
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Location(
+data class SearchItemRemoteDto(
     val country: String?,
+    val id: Int?,
     val lat: Double?,
-    val localtime: String?,
-    val localtime_epoch: Int?,
     val lon: Double?,
     val name: String?,
     val region: String?,
-    val tz_id: String?
+    val url: String?
 )

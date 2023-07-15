@@ -1,13 +1,19 @@
 package domain.entities.current
 
-import domain.entities.base_entity.LocationEntity
-import domain.entities.base_entity.WeatherDetailsEntity
 
 /**
  * Created by Mohamed Elgohary on 7/14/2023.
  */
 
 data class CurrentWeatherEntity(
-    val weatherDetails: WeatherDetailsEntity,
-    val location: LocationEntity
+    val code: Int?,
+    val icon: String?,
+    val text: String?,
+    val cloud: Int?,
+    val temperatureCelsius: Double?,
+    val feelsLikeCelsius: Double?,
+    val country: String?,
+    val localTime: String?,
+    val name: String?,
+    val region: String?,
 )
