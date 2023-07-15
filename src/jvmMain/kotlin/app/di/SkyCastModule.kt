@@ -21,7 +21,11 @@ import io.ktor.serialization.gson.*
 import org.koin.core.Koin
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import presentation.home_screen.HomeViewModel
+import presentation.home_screen.view_model.HomeViewModel
+import presentation.home_screen.view_model.mapper.ForecastDayWeatherMapper
+import presentation.home_screen.view_model.mapper.ForecastHourMapper
+import presentation.home_screen.view_model.mapper.SearchMapper
+import presentation.home_screen.view_model.mapper.WeatherDetailsMapper
 
 const val BASE_URL = "http://api.weatherapi.com/v1"
 val module = module {
@@ -59,7 +63,26 @@ val module = module {
     single { GetForecastDayUseCase(get()) }
     single { GetForecastHourUseCase(get()) }
 
-    single { HomeViewModel() }
+    single { HomeViewModel(
+        weatherDetailsMapper = get(),
+        searchMapper = get(),
+        forecastDayWeatherMapper= get(),
+        forecastHourMapper = get(),
+        getWeatherDetailsUseCase=get(),
+        getCitySearchResultUseCase=get(),
+        getForecastDayUseCase=get(),
+        getForecastHourUseCase=get()
+    )
+    }
+
+    single { WeatherDetailsMapper() }
+    single { SearchMapper() }
+    single { ForecastDayWeatherMapper()}
+    single { ForecastHourMapper() }
+    single { GetWeatherDetailsUseCase(get()) }
+    single { GetCitySearchResultUseCase (get())}
+    single { GetForecastDayUseCase (get())}
+    single { GetForecastHourUseCase (get())}
 }
 
 fun initKoin(): Koin {

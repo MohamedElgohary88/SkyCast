@@ -11,6 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import org.koin.core.context.GlobalContext.startKoin
+import org.koin.java.KoinJavaComponent.inject
+import presentation.home_screen.view_model.HomeUiState
+import presentation.home_screen.view_model.HomeViewModel
+import presentation.home_screen.view_model.mapper.SearchMapper
 
 @Composable
 @Preview
@@ -31,5 +36,6 @@ fun App() {
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         App()
+
     }
 }
