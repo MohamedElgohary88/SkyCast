@@ -11,31 +11,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import app.di.initKoin
+import org.koin.core.Koin
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.java.KoinJavaComponent.inject
+import presentation.home_screen.HomeScreen
 import presentation.home_screen.view_model.HomeUiState
 import presentation.home_screen.view_model.HomeViewModel
 import presentation.home_screen.view_model.mapper.SearchMapper
 
 @Composable
 @Preview
-fun App() {
+fun App(koin: Koin) {
     MaterialTheme {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Button(onClick = {}) {
-                Text("Mimo")
-            }
-        }
+        HomeScreen(koin.get())
     }
 }
 
 fun main() = application {
+    val koin = initKoin()
     Window(onCloseRequest = ::exitApplication) {
-        App()
+        App(koin)
 
     }
 }

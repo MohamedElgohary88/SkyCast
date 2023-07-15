@@ -1,5 +1,7 @@
 package presentation.home_screen
 
-class HomeScreen {
+import presentation.home_screen.view_model.HomeViewModel
+
+class HomeScreen(homeViewModel: HomeViewModel) {
 
 }
