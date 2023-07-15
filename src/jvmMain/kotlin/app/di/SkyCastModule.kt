@@ -9,6 +9,8 @@ import domain.mapper.DomainSearchItemMapper
 import domain.mapper.DomainWeatherDetailsMapper
 import domain.repository.SkyCastRepository
 import domain.use_cases.GetCitySearchResultUseCase
+import domain.use_cases.GetForecastDayUseCase
+import domain.use_cases.GetForecastHourUseCase
 import domain.use_cases.GetWeatherDetailsUseCase
 import io.ktor.client.*
 import io.ktor.client.engine.java.*
@@ -54,8 +56,10 @@ val module = module {
 
     single { GetWeatherDetailsUseCase(get()) }
     single { GetCitySearchResultUseCase(get()) }
+    single { GetForecastDayUseCase(get()) }
+    single { GetForecastHourUseCase(get()) }
 
-    single { HomeViewModel(get()) }
+    single { HomeViewModel() }
 }
 
 fun initKoin(): Koin {
