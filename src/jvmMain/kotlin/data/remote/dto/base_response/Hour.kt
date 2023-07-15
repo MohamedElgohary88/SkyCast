@@ -1,6 +1,5 @@
 package data.remote.dto.base_response
 
-import data.remote.dto.base_response.Condition
 
 data class Hour(
     val chance_of_rain: Int?,

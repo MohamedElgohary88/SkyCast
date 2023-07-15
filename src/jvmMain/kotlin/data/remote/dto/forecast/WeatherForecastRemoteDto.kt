@@ -4,9 +4,6 @@ import data.remote.dto.base_response.CurrentX
 import data.remote.dto.base_response.Forecast
 import data.remote.dto.base_response.Location
 
-/**
- * Created by Mohamed Elgohary on 7/14/2023.
- */
 
 data class WeatherForecastRemoteDto(
     val current: CurrentX?,

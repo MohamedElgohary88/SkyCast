@@ -1,7 +1,5 @@
 package data.remote.dto.base_response
 
-import data.remote.dto.base_response.Condition
-
 data class Day(
     val avghumidity: Double?,
     val avgtemp_c: Double?,

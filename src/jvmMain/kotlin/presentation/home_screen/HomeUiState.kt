@@ -1,9 +1,6 @@
 package presentation.home_screen
 
 
-/**
- * Created by Mohamed Elgohary on 7/15/2023.
- */
 data class HomeUiState(
     val icon: String = "",
     val citySearchResult: List<SearchItemUIState> = emptyList(),
