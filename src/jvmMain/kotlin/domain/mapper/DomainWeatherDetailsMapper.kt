@@ -3,10 +3,6 @@ package domain.mapper
 import data.remote.dto.current.CurrentWeatherRemoteDto
 import domain.entities.current.CurrentWeatherEntity
 
-/**
- * Created by Mohamed Elgohary on 7/15/2023.
- */
-
 class DomainWeatherDetailsMapper : Mapper<CurrentWeatherRemoteDto, CurrentWeatherEntity> {
     override fun map(input: CurrentWeatherRemoteDto): CurrentWeatherEntity {
         return CurrentWeatherEntity(

@@ -1,8 +1,5 @@
 package domain.entities.forecast
 
-/**
- * Created by Mohamed Elgohary on 7/15/2023.
- */
 data class WeatherForecastDayEntity(
     val code: Int?,
     val icon: String?,

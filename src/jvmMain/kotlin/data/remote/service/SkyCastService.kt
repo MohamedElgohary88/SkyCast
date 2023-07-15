@@ -4,9 +4,6 @@ import data.remote.dto.current.CurrentWeatherRemoteDto
 import data.remote.dto.forecast.WeatherForecastRemoteDto
 import data.remote.dto.search.SearchItemRemoteDto
 
-/**
- * Created by Mohamed Elgohary on 7/14/2023.*/
-
 interface SkyCastService {
     suspend fun getWeather(cityName: String): CurrentWeatherRemoteDto
     suspend fun getCityName(cityName: String): List<SearchItemRemoteDto>

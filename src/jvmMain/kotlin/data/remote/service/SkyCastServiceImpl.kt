@@ -9,7 +9,6 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 
-
 class SkyCastServiceImpl(
     private val client: HttpClient
 ) : SkyCastService {

@@ -1,9 +1,6 @@
 package domain.entities.current
 
 
-/**
- * Created by Mohamed Elgohary on 7/14/2023.
- */
 
 data class CurrentWeatherEntity(
     val code: Int?,
