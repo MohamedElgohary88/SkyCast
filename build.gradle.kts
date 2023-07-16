@@ -42,6 +42,7 @@ kotlin {
                 implementation("io.ktor:ktor-client-serialization:1.6.3")
                 implementation("com.google.code.gson:gson:2.10.1")
                 implementation("org.jetbrains.compose.material3:material3-desktop:1.2.1")
+
             }
         }
         val jvmTest by getting
