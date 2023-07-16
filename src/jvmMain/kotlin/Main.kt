@@ -9,23 +9,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import screens.home.HomeScreen
 
 @Composable
 @Preview
 fun App() {
-    var text by remember { mutableStateOf("Hello, World!") }
 
     MaterialTheme {
-        Button(onClick = {
-            text = "Hello, Desktop!"
-        }) {
-            Text(text)
-        }
+
     }
 }
 
 fun main() = application {
     Window(onCloseRequest = ::exitApplication) {
         App()
+        HomeScreen(city="",time="1:2", dayOrNight = "", nowDegree = 0,
+            fromDegree = 0, toDegree = 0)
     }
 }
