@@ -3,14 +3,20 @@ package presentation.home_screen
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
@@ -23,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import composables.CustomSearchField
 import composables.HorizontalCard
 import composables.VerticalCard
+import kotlinx.coroutines.launch
 import presentation.home_screen.view_model.HomeUiState
 
 @Composable
@@ -75,7 +82,18 @@ fun HomeContent(state: HomeUiState) {
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold
             ) //todo change color and font size to design system
+            val scrollState = rememberLazyListState()
+            val coroutineScope = rememberCoroutineScope()
             LazyRow(
+                state = scrollState,
+                modifier = Modifier.draggable(
+                    orientation = Orientation.Horizontal,
+                    state = rememberDraggableState { delta ->
+                        coroutineScope.launch {
+                            scrollState.scrollBy(-delta)
+                        }
+                    },
+                ),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 contentPadding = PaddingValues(16.dp)
             ) {
