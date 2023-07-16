@@ -6,7 +6,6 @@ import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import app.di.initKoin
 import org.koin.core.Koin
-import presentation.home_screen.HomeScreen
 import androidx.compose.ui.window.rememberWindowState
 import screens.home.HomeScreen
 
@@ -24,9 +23,5 @@ fun main() = application {
     state.placement = WindowPlacement.Maximized
     Window(onCloseRequest = ::exitApplication, state = state) {
         App(koin)
-        HomeScreen(
-            city = "Baghdad", time = "10:22", dayOrNight = "AM", nowDegree = 27,
-            fromDegree = 35, toDegree = 17
-        )
     }
 }
