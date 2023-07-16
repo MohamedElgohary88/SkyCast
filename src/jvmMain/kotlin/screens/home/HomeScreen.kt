@@ -50,6 +50,7 @@ fun HomeScreen(
         /// region lazy
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(4.dp),
+            contentPadding = PaddingValues(16.dp),
             modifier = Modifier.align(Alignment.TopEnd).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
                 .clip(shape = RoundedCornerShape(topEnd = 16.dp))
                 .background(Color(0x4F859BAC))
