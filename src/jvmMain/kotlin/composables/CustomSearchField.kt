@@ -16,10 +16,11 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun CustomSearchField(
     value:String = "",
-    onValueChange:(String)->Unit
+    onValueChange:(String)->Unit,
+    modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = Modifier.width(500.dp),
+        modifier = modifier.width(400.dp),
         shape = RoundedCornerShape(8.dp),
         color = Color.Transparent,
         border = BorderStroke(width = 1.5.dp, Color(0x80859BAC))

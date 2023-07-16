@@ -6,6 +6,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,45 +28,43 @@ fun VerticalCard(
 ) {
     Row(
         modifier = Modifier
-            .clip(shape = RoundedCornerShape(12.dp)) //todo change that to Transparent but that for now to show it
-            .padding(56.dp)
-            .fillMaxWidth()
-            .background(Color.Black),
-
-      horizontalArrangement = Arrangement.SpaceBetween
+            .padding(horizontal = 16.dp, vertical = 4.dp)
+            .width(182.dp).clip(shape = RoundedCornerShape(12.dp))
+            .background(Color(0x4F859BAC)),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Image(
             painter = image,
             contentDescription = "",
-            modifier = Modifier.size(40.dp)
-              .weight(1f)
+            modifier = Modifier.padding(8.dp).size(24.dp)
         )
-        Column(modifier = Modifier.padding(8.dp)
-          .weight(2f)
+        Column(
+            modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+                .weight(4f)
         ) {
             Text(
                 text = day,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 color = Color.White
             ) //todo change color and font size to design system
             Text(
                 text = weather,
-                fontSize = 16.sp,
+                fontSize = 12.sp,
                 color = Color(0xB3FFFFFF)
             ) //todo change color and font size  to design system
         }
-
-        Column(modifier = Modifier
-            //.weight(1f)
+        Divider(color = Color(0xffe0e0e0), modifier = Modifier.height(48.dp).width(1.dp).padding( top = 8.dp, bottom = 8.dp))
+        Column(
+            modifier = Modifier.padding(end = 8.dp, top = 8.dp, bottom = 8.dp, start = 8.dp)
         ) {
             Text(
                 text = "$toDegree°",
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 color = Color(0xB3FFFFFF)
             ) //todo change color and font size to design system
             Text(
                 text = "$fromDegree°",
-                fontSize = 16.sp,
+                fontSize = 14.sp,
                 color = Color(0xB3FFFFFF)
             ) //todo change color and font size  to design system
         }

@@ -24,25 +24,23 @@ fun HorizontalCard(
     dayOrNight: String = "AM",
     degree: Int = 30,
 ) {
-
     Card(
         shape = RoundedCornerShape(16.dp),
         elevation = 0.dp,
         backgroundColor = Color(0x4F859BAC) //todo change that to Transparent but that for now to show it
     ) {
         Column(
-            modifier = Modifier
-                .padding(horizontal = 22.dp , vertical = 32.dp),
+            modifier = Modifier.padding(horizontal = 16.dp , vertical = 24.dp),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "$time $dayOrNight" , fontSize = 24.sp  , color = Color.White)//todo change color and font size to design system
+            Text(text = "$time $dayOrNight" , fontSize = 20.sp  , color = Color.White)//todo change color and font size to design system
             Image(
                 painter = image,
                 contentDescription = "",
-                modifier = Modifier.padding(vertical = 16.dp).size(75.dp)
+                modifier = Modifier.padding(vertical = 8.dp).size(32.dp)
             )
-            Text(text = "$degree°C" , fontSize = 24.sp  , color = Color.White)//todo change color and font size to design system
+            Text(text = "$degree°C" , fontSize = 16.sp  , color = Color.White)//todo change color and font size to design system
         }
     }
 }
