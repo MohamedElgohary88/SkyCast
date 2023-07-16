@@ -1,4 +1,4 @@
-package screens
+package presentation.splash_screen
 
 import PainterRes
 import androidx.compose.desktop.ui.tooling.preview.Preview

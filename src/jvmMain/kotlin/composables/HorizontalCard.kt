@@ -16,13 +16,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import presentation.home_screen.view_model.ForecastDayUiState
+import presentation.home_screen.view_model.ForecastHourUiState
 
 @Composable
 fun HorizontalCard(
+    forecastHourUiState: ForecastHourUiState,
     image: Painter = PainterRes.weatherSunCloudImage(),
-    time: String = "10:22",
-    dayOrNight: String = "AM",
-    degree: Int = 30,
 ) {
     Card(
         shape = RoundedCornerShape(16.dp),
@@ -34,21 +34,13 @@ fun HorizontalCard(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "$time $dayOrNight" , fontSize = 20.sp  , color = Color.White)//todo change color and font size to design system
+            Text(text = "${forecastHourUiState.time}" , fontSize = 20.sp  , color = Color.White)//todo change color and font size to design system
             Image(
                 painter = image,
                 contentDescription = "",
                 modifier = Modifier.padding(vertical = 8.dp).size(32.dp)
             )
-            Text(text = "$degree°C" , fontSize = 16.sp  , color = Color.White)//todo change color and font size to design system
+            Text(text = "${forecastHourUiState.temperatureCelsius}°C" , fontSize = 16.sp  , color = Color.White)//todo change color and font size to design system
         }
-    }
-}
-
-@Preview
-@Composable
-fun HorizontalCardPreview() {
-    MaterialTheme {
-        HorizontalCard()
     }
 }

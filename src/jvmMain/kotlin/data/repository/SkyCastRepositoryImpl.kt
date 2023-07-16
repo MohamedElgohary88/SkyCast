@@ -10,6 +10,7 @@ import domain.mapper.DomainForecastHourMapper
 import domain.mapper.DomainSearchItemMapper
 import domain.mapper.DomainWeatherDetailsMapper
 import domain.repository.SkyCastRepository
+import org.jetbrains.skia.impl.Log
 
 class SkyCastRepositoryImpl(
     private val skyCastService: SkyCastService,
@@ -23,10 +24,12 @@ class SkyCastRepositoryImpl(
     }
 
     override suspend fun getCitySearchResult(cityName: String): List<SearchItemEntity> {
+        println(" repo-search ---> ${skyCastService.getCityName(cityName)}")
         return domainSearchItemMapper.mapSingle(skyCastService.getCityName(cityName))
     }
 
     override suspend fun getForecastDays(cityName: String): List<WeatherForecastDayEntity> {
+        println(" repo ---> ${skyCastService.getForecastDays(cityName)}")
         return domainForecastDayMapper.map(skyCastService.getForecastDays(cityName))
     }
 

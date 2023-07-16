@@ -33,18 +33,11 @@ class HomeViewModel (
     val homeUiState = _homeUiState.asStateFlow()
     private val cityName = "London"
 
-
-
     init {
         getWeatherDetails()
         getCitySearchResult()
         getForecastDayWeather()
         getForecastHourWeather()
-        println(getWeatherDetailsUseCase)
-        println(getCitySearchResultUseCase)
-        println(getForecastDayUseCase)
-        println(getForecastHourUseCase)
-
     }
 
     private fun getWeatherDetails() {
@@ -57,6 +50,7 @@ class HomeViewModel (
 
     }
    private fun onSuccessWeatherDetails(weatherDetailsUiState:HomeUiState){
+       println(" viewModel ---> $weatherDetailsUiState")
        _homeUiState.update {
            it.copy(
                icon = weatherDetailsUiState.icon,
@@ -94,6 +88,7 @@ class HomeViewModel (
         )
     }
     private fun onSuccessForecastDayWeather(forecastDayUiState:List<ForecastDayUiState>){
+        print(" viewModel ---> $forecastDayUiState")
         _homeUiState.update { it.copy(forecastDayUiState=forecastDayUiState) }
     }
     private fun getForecastHourWeather() {

@@ -7,7 +7,7 @@ import androidx.compose.ui.window.application
 import app.di.initKoin
 import org.koin.core.Koin
 import androidx.compose.ui.window.rememberWindowState
-import screens.home.HomeScreen
+import presentation.home_screen.HomeScreen
 
 @Composable
 @Preview
