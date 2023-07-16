@@ -32,7 +32,6 @@ class SkyCastServiceImpl(
             url(HttpRoutes.getForecastDays(cityName))
             contentType(ContentType.Application.Json)
         }.body()
-
     }
 
     override suspend fun getForecastHours(cityName: String): WeatherForecastRemoteDto {

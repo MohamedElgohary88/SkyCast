@@ -31,6 +31,7 @@ import composables.HorizontalCard
 import composables.VerticalCard
 import kotlinx.coroutines.launch
 import presentation.home_screen.view_model.HomeUiState
+import java.text.SimpleDateFormat
 
 @Composable
 fun HomeContent(state: HomeUiState) {
@@ -117,49 +118,54 @@ fun HomeContent(state: HomeUiState) {
                 contentDescription = "",
                 modifier = Modifier.size(150.dp).padding(end = 48.dp)
             )
-            Column(modifier = Modifier.padding(end = 56.dp)) {
+            Column(modifier = Modifier.padding(end = 56.dp, top = 16.dp)) {
                 Row {
                     Text(
                         modifier = Modifier,
                         text = "${state.temperatureCelsius}",
-                        fontSize = 82.sp,
+                        fontSize = 64.sp,
                         color = Color.White,
                         fontWeight = FontWeight.SemiBold
                     )
                     Text(
                         modifier = Modifier,
                         text = "°C",
-                        fontSize = 48.sp,
+                        fontSize = 32.sp,
                         color = Color.White,
                         fontWeight = FontWeight.SemiBold
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
+                val forecast = state.forecastDayUiState.firstOrNull()
                 Text(
-                    modifier = Modifier,
-                    text = "${state.temperatureCelsius}°C/${state.temperatureCelsius}°C",
+                    text = "${forecast?.maximumTemperatureCelsius}°C/${
+                        forecast?.minimumTemperatureCelsius
+                    }°C",
                     fontSize = 24.sp,
                     color = Color.White
                 )
+
             }
-            Column {
-                Text(
-                    modifier = Modifier,
-                    text = "Partly Sunny",
-                    fontSize = 36.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Medium
-                )
+            Column(modifier = Modifier.padding(top = 32.dp)) {
+                state.text?.let {
+                    Text(
+                        modifier = Modifier,
+                        text = it,
+                        fontSize = 26.sp,
+                        color = Color.White,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
                 Spacer(modifier = Modifier.height(12.dp))
                 Text(
                     modifier = Modifier,
-                    text = "Feels like 30°",
-                    fontSize = 24.sp,
+                    text = "Feels like ${state.feelsLikeCelsius?.toInt()}C°",
+                    fontSize = 20.sp,
                     color = Color.White
                 )
             }
         }
-        CustomSearchField("", {}, Modifier.align(Alignment.TopCenter).padding(top = 108.dp))
+        CustomSearchField("", {}, Modifier.align(Alignment.TopCenter).padding(top = 108.dp, end = 32.dp))
         Column(
             modifier = Modifier.fillMaxSize().align(Alignment.TopStart)
                 .padding(start = 64.dp, top = 108.dp),
@@ -174,12 +180,14 @@ fun HomeContent(state: HomeUiState) {
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                modifier = Modifier,
-                text = "${state.localTime}",
-                fontSize = 24.sp,
-                color = Color.White
-            )
+            state.localTime?.takeLast(5)?.let {
+                Text(
+                    text = "$it PM",
+                    fontSize = 20.sp,
+                    color = Color.White
+                )
+            }
+
         }
         /// endregion
     }

@@ -5,9 +5,9 @@ import domain.entities.forecast.WeatherForecastHourEntity
 
 class DomainForecastHourMapper : Mapper<WeatherForecastRemoteDto, List<WeatherForecastHourEntity>> {
     override fun map(input: WeatherForecastRemoteDto): List<WeatherForecastHourEntity> {
-        return input.forecasts.flatMap { forecast ->
-            val astro = forecast?.astro
-            forecast?.hour.orEmpty().mapNotNull { hour ->
+        return input.forecast.forecastday.flatMap { forecast ->
+            val astro = forecast.astro
+            forecast.hour.mapNotNull { hour ->
                 WeatherForecastHourEntity(
                     code = hour?.condition?.code,
                     icon = hour?.condition?.icon,
@@ -24,3 +24,4 @@ class DomainForecastHourMapper : Mapper<WeatherForecastRemoteDto, List<WeatherFo
         }
     }
 }
+

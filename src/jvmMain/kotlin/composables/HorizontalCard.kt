@@ -34,7 +34,7 @@ fun HorizontalCard(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "${forecastHourUiState.time}" , fontSize = 20.sp  , color = Color.White)//todo change color and font size to design system
+            Text(text = "${forecastHourUiState.time?.takeLast(5)} PM" , fontSize = 20.sp  , color = Color.White)//todo change color and font size to design system
             Image(
                 painter = image,
                 contentDescription = "",

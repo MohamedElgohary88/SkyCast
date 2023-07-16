@@ -6,6 +6,6 @@ import data.remote.dto.base_response.Location
 
 data class WeatherForecastRemoteDto(
     val current: CurrentX?,
-    val forecasts: List<Forecast?>,
+    val forecast: Forecast,
     val location: Location?
 )

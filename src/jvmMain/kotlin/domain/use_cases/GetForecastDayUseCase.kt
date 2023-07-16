@@ -9,7 +9,6 @@ import io.ktor.http.*
 
 class GetForecastDayUseCase(private val skyCastRepository: SkyCastRepository) {
     suspend operator fun invoke(cityName: String): List<WeatherForecastDayEntity> {
-        print(" domain ---> ${skyCastRepository.getForecastDays(cityName)}")
         return skyCastRepository.getForecastDays(cityName)
     }
 }

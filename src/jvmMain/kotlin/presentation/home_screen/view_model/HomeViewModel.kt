@@ -12,7 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 import presentation.home_screen.view_model.mapper.ForecastDayWeatherMapper
 import presentation.home_screen.view_model.mapper.ForecastHourMapper
 import presentation.home_screen.view_model.mapper.SearchMapper
@@ -50,7 +49,6 @@ class HomeViewModel (
 
     }
    private fun onSuccessWeatherDetails(weatherDetailsUiState:HomeUiState){
-       println(" viewModel ---> $weatherDetailsUiState")
        _homeUiState.update {
            it.copy(
                icon = weatherDetailsUiState.icon,
@@ -88,7 +86,6 @@ class HomeViewModel (
         )
     }
     private fun onSuccessForecastDayWeather(forecastDayUiState:List<ForecastDayUiState>){
-        print(" viewModel ---> $forecastDayUiState")
         _homeUiState.update { it.copy(forecastDayUiState=forecastDayUiState) }
     }
     private fun getForecastHourWeather() {

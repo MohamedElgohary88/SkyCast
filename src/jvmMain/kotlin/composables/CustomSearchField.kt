@@ -20,7 +20,7 @@ fun CustomSearchField(
     modifier: Modifier = Modifier
 ) {
     Surface(
-        modifier = modifier.width(400.dp),
+        modifier = modifier.width(380.dp),
         shape = RoundedCornerShape(8.dp),
         color = Color.Transparent,
         border = BorderStroke(width = 1.5.dp, Color(0x80859BAC))
