@@ -33,18 +33,28 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 val ktorVersion = "2.3.2"
+                val voyagerVersion = "1.0.0-rc05"
+
                 implementation("io.ktor:ktor-client-java:$ktorVersion")
                 implementation("io.insert-koin:koin-core:3.4.2")
-                implementation("io.ktor:ktor-client-json:1.6.3")
-                implementation("io.ktor:ktor-client-logging:1.6.3")
-                implementation("io.ktor:ktor-client-content-negotiation:2.3.2")
-                implementation("io.ktor:ktor-serialization-gson:2.3.2")
-                implementation("io.ktor:ktor-client-serialization:1.6.3")
+                implementation("io.ktor:ktor-client-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-gson:$ktorVersion")
+                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("com.google.code.gson:gson:2.10.1")
-                implementation("org.jetbrains.compose.material3:material3-desktop:1.2.1")
+                implementation("org.jetbrains.compose.material3:material3-desktop:1.0.0")
+
+                // Navigator
+                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+
+                // Kodein integration
+                implementation("cafe.adriel.voyager:voyager-kodein:$voyagerVersion")
+
 
             }
         }
+
         val jvmTest by getting
     }
 }
