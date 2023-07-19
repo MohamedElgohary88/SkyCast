@@ -7,23 +7,23 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import presentation.home_screen.view_model.HomeViewModel
 
-
-@Preview
-@Composable
-fun HomeScreen(homeViewModel: HomeViewModel) {
-    val state by homeViewModel.homeUiState.collectAsState()
-    HomeContent(
-        state = state,
-        updateSearchInput = { newSearchInput ->
-            homeViewModel.updateSearchInput(newSearchInput)
-        },
-        updateCityName = { cityName ->
-            homeViewModel.updateCityName(cityName)
-        }, reloadData = { homeViewModel.reloadData() },
-        getSearchResult = {
-            homeViewModel.getCitySearchResult()
-        }
-    )
+class HomeScreen(private val homeViewModel: HomeViewModel) {
+    @Composable
+    fun Content() {
+        val state by homeViewModel.homeUiState.collectAsState()
+        HomeContent(
+            state = state,
+            updateSearchInput = { newSearchInput ->
+                homeViewModel.updateSearchInput(newSearchInput)
+            },
+            updateCityName = { cityName ->
+                homeViewModel.updateCityName(cityName)
+            }, reloadData = { homeViewModel.reloadData() },
+            getSearchResult = {
+                homeViewModel.getCitySearchResult()
+            }
+        )
+    }
 }
 
 @Preview
