@@ -1,5 +1,6 @@
 package presentation.home_screen
 
+import PainterRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -16,6 +17,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,18 +28,30 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import util.AsyncImage
+import util.loadImageBitmap
 import composables.CustomSearchField
 import composables.HorizontalCard
 import composables.VerticalCard
 import kotlinx.coroutines.launch
 import presentation.home_screen.view_model.HomeUiState
-import java.text.SimpleDateFormat
+import presentation.home_screen.view_model.SearchItemUIState
 
 @Composable
-fun HomeContent(state: HomeUiState) {
+fun HomeContent(
+    state: HomeUiState,
+    updateSearchInput: (String) -> Unit,
+    reloadData: () -> Unit,
+    updateCityName: (String) -> Unit,
+    getSearchResult: () -> Unit,
+) {
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
-            painter = PainterRes.skyCloudBackgroundImage(),
+            painter = if (state.forecastHourUiState.firstOrNull()?.isDay == 0) {
+                PainterRes.skyCloudBackgroundDayImage()
+            } else {
+                PainterRes.skyCloudBackgroundNightImage()
+            },
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize().blur(15.dp),
             contentDescription = "Weather image"
@@ -49,11 +63,30 @@ fun HomeContent(state: HomeUiState) {
             shape = RoundedCornerShape(16.dp),
         ) {}
 
+        state.searchInput?.let { searchInput ->
+            CustomSearchField(
+                value = searchInput,
+                onValueChange = { newSearchInput ->
+                    updateSearchInput(newSearchInput)
+                },
+                searchResults = state.citySearchResult,
+                updateCityName = { cityName ->
+                    updateCityName(cityName)
+                },
+                reloadData = { reloadData() },
+                selectedCityName = state.cityName,
+                modifier = Modifier.align(Alignment.TopCenter).padding(top = 108.dp, end = 32.dp)
+            )
+        }
+        LaunchedEffect(state.searchInput) {
+            getSearchResult()
+        }
+
         /// region lazy
         LazyColumn(
             verticalArrangement = Arrangement.spacedBy(4.dp),
             contentPadding = PaddingValues(16.dp),
-            modifier = Modifier.align(Alignment.TopEnd).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
+            modifier = Modifier.align(Alignment.TopEnd).height(532.dp).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
                 .clip(shape = RoundedCornerShape(topEnd = 16.dp))
                 .background(Color(0x4F859BAC))
         ) {
@@ -68,7 +101,7 @@ fun HomeContent(state: HomeUiState) {
             }
             items(state.forecastDayUiState) {
                 if (it != null) {
-                    VerticalCard(it)
+                    VerticalCard(it, it.icon.toString())
                 }
             }
         }
@@ -100,7 +133,7 @@ fun HomeContent(state: HomeUiState) {
             ) {
                 items(state.forecastHourUiState) {
                     if (it != null) {
-                        HorizontalCard(it)
+                        HorizontalCard(it, it.icon.toString())
                     }
                 }
             }
@@ -113,24 +146,16 @@ fun HomeContent(state: HomeUiState) {
             modifier = Modifier.wrapContentSize().align(Alignment.TopStart)
                 .padding(start = 64.dp, top = 200.dp)
         ) {
-            Image(
-                painter = PainterRes.weatherSunCloudImage(),
-                contentDescription = "",
-                modifier = Modifier.size(150.dp).padding(end = 48.dp)
+            AsyncImage( //state.forecastDayUiState.filterNotNull().first().icon.toString()
+                { loadImageBitmap("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Earth_from_Space.jpg/640px-Earth_from_Space.jpg") },
+                { it }, "", Modifier.size(150.dp).padding(end = 48.dp)
             )
             Column(modifier = Modifier.padding(end = 56.dp, top = 16.dp)) {
                 Row {
                     Text(
                         modifier = Modifier,
-                        text = "${state.temperatureCelsius}",
+                        text = "${state.temperatureCelsius} °C",
                         fontSize = 64.sp,
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                    Text(
-                        modifier = Modifier,
-                        text = "°C",
-                        fontSize = 32.sp,
                         color = Color.White,
                         fontWeight = FontWeight.SemiBold
                     )
@@ -165,7 +190,6 @@ fun HomeContent(state: HomeUiState) {
                 )
             }
         }
-        CustomSearchField("", {}, Modifier.align(Alignment.TopCenter).padding(top = 108.dp, end = 32.dp))
         Column(
             modifier = Modifier.fillMaxSize().align(Alignment.TopStart)
                 .padding(start = 64.dp, top = 108.dp),

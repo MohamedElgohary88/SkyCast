@@ -4,7 +4,7 @@ import domain.entities.current.CurrentWeatherEntity
 import domain.mapper.Mapper
 import presentation.home_screen.view_model.HomeUiState
 
-class WeatherDetailsMapper :Mapper<CurrentWeatherEntity, HomeUiState> {
+class WeatherDetailsUiMapper :Mapper<CurrentWeatherEntity, HomeUiState> {
     override fun map(input: CurrentWeatherEntity): HomeUiState {
         return HomeUiState(
             code = input.code,
