@@ -41,11 +41,12 @@ class HomeViewModel(
         val coroutineScope = CoroutineScope(Dispatchers.IO)
         coroutineScope.launch {
             getCityName()
+            getForecastDayWeather()
+            getForecastHourWeather()
+            getWeatherDetails()
+            getCitySearchResult()
         }
-        getForecastDayWeather()
-        getForecastHourWeather()
-        getWeatherDetails()
-        getCitySearchResult()
+
     }
 
     private suspend fun getCityName(){
