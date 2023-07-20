@@ -162,7 +162,7 @@ fun HomeContent(
                 Spacer(modifier = Modifier.height(8.dp))
                 val forecast = state.forecastDayUiState.firstOrNull()
                 Text(
-                    text = "${forecast?.maximumTemperatureCelsius}°C/${
+                    text = "${forecast?.maximumTemperatureCelsius}°C / ${
                         forecast?.minimumTemperatureCelsius
                     }°C",
                     fontSize = 24.sp,
