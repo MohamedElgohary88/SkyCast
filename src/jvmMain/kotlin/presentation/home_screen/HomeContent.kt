@@ -205,7 +205,7 @@ fun HomeContent(
             Spacer(modifier = Modifier.height(16.dp))
             state.localTime?.takeLast(5)?.let {
                 Text(
-                    text = "$it PM",
+                    text = it,
                     fontSize = 20.sp,
                     color = Color.White
                 )
