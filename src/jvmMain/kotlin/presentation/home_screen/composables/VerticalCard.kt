@@ -1,4 +1,4 @@
-package composables
+package presentation.home_screen.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

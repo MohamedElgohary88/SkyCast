@@ -30,12 +30,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import util.AsyncImage
 import util.loadImageBitmap
-import composables.CustomSearchField
-import composables.HorizontalCard
-import composables.VerticalCard
+import presentation.home_screen.composables.CustomSearchField
+import presentation.home_screen.composables.HorizontalCard
+import presentation.home_screen.composables.VerticalCard
 import kotlinx.coroutines.launch
 import presentation.home_screen.view_model.HomeUiState
-import presentation.home_screen.view_model.SearchItemUIState
 
 @Composable
 fun HomeContent(
