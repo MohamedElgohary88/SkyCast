@@ -29,7 +29,7 @@ fun VerticalCard(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        AsyncImage({ loadImageBitmap(image) }, { it }, "", Modifier.padding(8.dp).size(32.dp))
+        AsyncImage({ loadImageBitmap(image) }, { it }, "", Modifier.padding(8.dp).size(64.dp))
         Column(
             modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
                 .weight(4f)

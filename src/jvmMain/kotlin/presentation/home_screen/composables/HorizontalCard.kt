@@ -36,7 +36,7 @@ fun HorizontalCard(
             )//todo change color and font size to design system
 
             AsyncImage({ loadImageBitmap(image) }, { it }, "",
-                Modifier.padding(vertical = 8.dp).size(32.dp)
+                Modifier.padding(vertical = 8.dp).size(64.dp)
             )
 
             Text(
