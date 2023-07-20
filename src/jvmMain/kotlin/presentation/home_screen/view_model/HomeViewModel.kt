@@ -1,5 +1,6 @@
 package presentation.home_screen.view_model
 
+import data.remote.service.LocationManager
 import domain.mapper.Mapper
 import domain.use_cases.GetCitySearchResultUseCase
 import domain.use_cases.GetForecastDayUseCase
@@ -7,6 +8,7 @@ import domain.use_cases.GetForecastHourUseCase
 import domain.use_cases.GetWeatherDetailsUseCase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -36,10 +38,22 @@ class HomeViewModel(
     }
 
     fun reloadData() {
+        val coroutineScope = CoroutineScope(Dispatchers.IO)
+        coroutineScope.launch {
+            getCityName()
+        }
         getForecastDayWeather()
         getForecastHourWeather()
         getWeatherDetails()
         getCitySearchResult()
+    }
+
+    private suspend fun getCityName(){
+        _homeUiState.update {
+            it.copy(
+                cityName = LocationManager.getLocation().city.lowercase()
+            )
+        }
     }
 
     fun updateSearchInput(newSearchInput: String) {
@@ -56,7 +70,7 @@ class HomeViewModel(
 
     private fun getWeatherDetails() {
         tryToExecute(
-            call = { getWeatherDetailsUseCase(homeUiState.value.cityName.toString()) },
+            call = { getWeatherDetailsUseCase(_homeUiState.value.cityName.toString()) },
             mapper = weatherDetailsUiMapper,
             onSuccess = ::onSuccessWeatherDetails,
             onError = ::onError
@@ -97,8 +111,9 @@ class HomeViewModel(
     }
 
     private fun getForecastDayWeather() {
+        println(_homeUiState.value.cityName.toString())
         tryToExecuteList(
-            call = { getForecastDayUseCase(homeUiState.value.cityName.toString()) },
+            call = { getForecastDayUseCase(_homeUiState.value.cityName.toString()) },
             onSuccess = ::onSuccessForecastDayWeather,
             mapper = forecastDayWeatherUIMapper,
             onError = ::onError
@@ -111,7 +126,7 @@ class HomeViewModel(
 
     private fun getForecastHourWeather() {
         tryToExecuteList(
-            call = { getForecastHourUseCase(homeUiState.value.cityName.toString()) },
+            call = { getForecastHourUseCase(_homeUiState.value.cityName.toString()) },
             onSuccess = ::onSuccessForecastHourWeather,
             mapper = forecastHourUIMapper,
             onError = ::onError
