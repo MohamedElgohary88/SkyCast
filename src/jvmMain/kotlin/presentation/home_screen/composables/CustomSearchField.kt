@@ -1,4 +1,4 @@
-package composables
+package presentation.home_screen.composables
 
 import PainterRes
 import androidx.compose.foundation.BorderStroke
@@ -52,10 +52,11 @@ fun CustomSearchField(
                     tint = Color.White
                 )
                 BasicTextField(
-                    modifier = Modifier.padding(start = 12.dp),
+                    modifier = Modifier.fillMaxWidth().padding(start = 12.dp),
                     textStyle = TextStyle(color = Color.White),
                     value = value,
-                    onValueChange = onValueChange
+                    onValueChange = onValueChange,
+                    singleLine = true
                 )
             }
         }
