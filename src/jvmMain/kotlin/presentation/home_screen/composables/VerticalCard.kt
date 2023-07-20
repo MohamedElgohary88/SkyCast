@@ -15,17 +15,20 @@ import androidx.compose.ui.unit.sp
 import util.AsyncImage
 import util.loadImageBitmap
 import presentation.home_screen.view_model.ForecastDayUiState
+import presentation.theme.SkyCastCustomColors
 
 @Composable
 fun VerticalCard(
     forecastDayUiState: ForecastDayUiState,
     image: String = "https://github.com/JetBrains/compose-multiplatform/raw/master/artwork/idea-logo.svg",
 ) {
+    val color = SkyCastCustomColors.current
+
     Row(
         modifier = Modifier
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .width(190.dp).clip(shape = RoundedCornerShape(12.dp))
-            .background(Color(0x4F859BAC)),
+            .background(color.card),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -41,14 +44,14 @@ fun VerticalCard(
                     fontSize = 14.sp,
                     color = Color.White
                 )
-            } //todo change color and font size to design system
+            }
             forecastDayUiState.text?.let {
                 Text(
                     text = it,
                     fontSize = 12.sp,
-                    color = Color(0xB3FFFFFF)
+                    color = color.onSecondary
                 )
-            } //todo change color and font size  to design system
+            }
         }
         Divider(
             color = Color(0xffe0e0e0),
@@ -61,13 +64,13 @@ fun VerticalCard(
             Text(
                 text = "${forecastDayUiState.maximumTemperatureCelsius}°",
                 fontSize = 14.sp,
-                color = Color(0xB3FFFFFF),
-            ) //todo change color and font size to design system
+                color = color.onSecondary,
+            )
             Text(
                 text = "${forecastDayUiState.minimumTemperatureCelsius}°",
                 fontSize = 14.sp,
-                color = Color(0xB3FFFFFF),
-            ) //todo change color and font size  to design system
+                color = color.onSecondary,
+            )
         }
 
     }

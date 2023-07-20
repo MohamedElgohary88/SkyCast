@@ -35,6 +35,7 @@ import presentation.home_screen.composables.HorizontalCard
 import presentation.home_screen.composables.VerticalCard
 import kotlinx.coroutines.launch
 import presentation.home_screen.view_model.HomeUiState
+import presentation.theme.SkyCastCustomColors
 
 @Composable
 fun HomeContent(
@@ -44,6 +45,8 @@ fun HomeContent(
     updateCityName: (String) -> Unit,
     getSearchResult: () -> Unit,
 ) {
+    val color = SkyCastCustomColors.current
+
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = if (state.forecastHourUiState.firstOrNull()?.isDay == 0) {
@@ -57,7 +60,7 @@ fun HomeContent(
         )
         Surface(
             modifier = Modifier.fillMaxSize().padding(horizontal = 32.dp, vertical = 32.dp),
-            color = Color(0x4F2C485F), //todo change color to design system
+            color = color.backgroundContent,
             border = BorderStroke(0.dp, Color.Transparent),
             shape = RoundedCornerShape(16.dp),
         ) {}
@@ -87,7 +90,7 @@ fun HomeContent(
             contentPadding = PaddingValues(16.dp),
             modifier = Modifier.align(Alignment.TopEnd).height(532.dp).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
                 .clip(shape = RoundedCornerShape(topEnd = 16.dp))
-                .background(Color(0x4F859BAC))
+                .background(color = color.card)
         ) {
             item {
                 Text(
@@ -114,7 +117,7 @@ fun HomeContent(
                 fontSize = 20.sp,
                 color = Color.White,
                 fontWeight = FontWeight.SemiBold
-            ) //todo change color and font size to design system
+            )
             val scrollState = rememberLazyListState()
             val coroutineScope = rememberCoroutineScope()
             LazyRow(
