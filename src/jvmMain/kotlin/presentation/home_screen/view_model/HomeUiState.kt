@@ -14,7 +14,8 @@ data class HomeUiState(
     val temperatureCelsius: Double? = 0.0,
     val feelsLikeCelsius: Double? = 0.0,
     val localTime: String? = "",
-    val onError: List<String> = emptyList(),
+    val onError: List<String>? = emptyList(),
+    val isLoading: Boolean = false
 )
 
 data class SearchItemUIState(

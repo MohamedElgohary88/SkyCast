@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -84,137 +85,145 @@ fun HomeContent(
             getSearchResult()
         }
 
-        /// region lazy
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            contentPadding = PaddingValues(16.dp),
-            modifier = Modifier.align(Alignment.TopEnd).height(532.dp).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
-                .clip(shape = RoundedCornerShape(topEnd = 16.dp))
-                .background(color = color.card)
-        ) {
-            item {
-                Text(
-                    text = "Next Days",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color.White,
-                    modifier = Modifier.padding(start = 8.dp, top = 16.dp)
-                )
+        /// region content
+        if(state.isLoading){
+            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center){
+                CircularProgressIndicator(color = color.primary)
             }
-            items(state.forecastDayUiState) {
-                if (it != null) {
-                    VerticalCard(it, it.icon.toString())
-                }
-            }
-        }
-        Column(
-            modifier = Modifier.align(Alignment.BottomStart)
-                .padding(bottom = 32.dp, start = 32.dp, end = 32.dp)
-        ) {
-            Text(
-                modifier = Modifier.padding(start = 16.dp),
-                text = "Today",
-                fontSize = 20.sp,
-                color = Color.White,
-                fontWeight = FontWeight.SemiBold
-            )
-            val scrollState = rememberLazyListState()
-            val coroutineScope = rememberCoroutineScope()
-            LazyRow(
-                state = scrollState,
-                modifier = Modifier.draggable(
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { delta ->
-                        coroutineScope.launch {
-                            scrollState.scrollBy(-delta)
-                        }
-                    },
-                ),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-                contentPadding = PaddingValues(16.dp)
+        }else{
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(4.dp),
+                contentPadding = PaddingValues(16.dp),
+                modifier = Modifier.align(Alignment.TopEnd).height(532.dp).padding(end = 32.dp, top = 32.dp, bottom = 32.dp)
+                    .clip(shape = RoundedCornerShape(topEnd = 16.dp))
+                    .background(color = color.card)
             ) {
-                items(state.forecastHourUiState) {
+                item {
+                    Text(
+                        text = "Next Days",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = Color.White,
+                        modifier = Modifier.padding(start = 8.dp, top = 16.dp)
+                    )
+                }
+                items(state.forecastDayUiState) {
                     if (it != null) {
-                        HorizontalCard(it, it.icon.toString())
+                        VerticalCard(it, it.icon.toString())
                     }
                 }
             }
-        }
+            Column(
+                modifier = Modifier.align(Alignment.BottomStart)
+                    .padding(bottom = 32.dp, start = 32.dp, end = 32.dp)
+            ) {
+                Text(
+                    modifier = Modifier.padding(start = 16.dp),
+                    text = "Today",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.SemiBold
+                )
+                val scrollState = rememberLazyListState()
+                val coroutineScope = rememberCoroutineScope()
+                LazyRow(
+                    state = scrollState,
+                    modifier = Modifier.draggable(
+                        orientation = Orientation.Horizontal,
+                        state = rememberDraggableState { delta ->
+                            coroutineScope.launch {
+                                scrollState.scrollBy(-delta)
+                            }
+                        },
+                    ),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    contentPadding = PaddingValues(16.dp)
+                ) {
+                    items(state.forecastHourUiState) {
+                        if (it != null) {
+                            HorizontalCard(it, it.icon.toString())
+                        }
+                    }
+                }
+            }
 
-        /// endregion
+            /// endregion
 
-        /// region design
-        Row(
-            modifier = Modifier.wrapContentSize().align(Alignment.TopStart)
-                .padding(start = 64.dp, top = 200.dp)
-        ) {
-            AsyncImage( //state.forecastDayUiState.filterNotNull().first().icon.toString()
-                { loadImageBitmap("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Earth_from_Space.jpg/640px-Earth_from_Space.jpg") },
-                { it }, "", Modifier.size(150.dp).padding(end = 48.dp)
-            )
-            Column(modifier = Modifier.padding(end = 56.dp, top = 16.dp)) {
-                Row {
+            /// region design
+            Row(
+                modifier = Modifier.wrapContentSize().align(Alignment.TopStart)
+                    .padding(start = 64.dp, top = 200.dp)
+            ) {
+                AsyncImage( //state.forecastDayUiState.filterNotNull().first().icon.toString()
+                    { loadImageBitmap("https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Earth_from_Space.jpg/640px-Earth_from_Space.jpg") },
+                    { it }, "", Modifier.size(150.dp).padding(end = 48.dp)
+                )
+                Column(modifier = Modifier.padding(end = 56.dp, top = 16.dp)) {
+                    Row {
+                        Text(
+                            modifier = Modifier,
+                            text = "${state.temperatureCelsius} °C",
+                            fontSize = 64.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    val forecast = state.forecastDayUiState.firstOrNull()
+                    Text(
+                        text = "${forecast?.maximumTemperatureCelsius}°C / ${
+                            forecast?.minimumTemperatureCelsius
+                        }°C",
+                        fontSize = 24.sp,
+                        color = Color.White
+                    )
+
+                }
+                Column(modifier = Modifier.padding(top = 32.dp)) {
+                    state.text?.let {
+                        Text(
+                            modifier = Modifier,
+                            text = it,
+                            fontSize = 26.sp,
+                            color = Color.White,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
                     Text(
                         modifier = Modifier,
-                        text = "${state.temperatureCelsius} °C",
-                        fontSize = 64.sp,
-                        color = Color.White,
-                        fontWeight = FontWeight.SemiBold
+                        text = "Feels like ${state.feelsLikeCelsius?.toInt()}C°",
+                        fontSize = 20.sp,
+                        color = Color.White
                     )
                 }
-                Spacer(modifier = Modifier.height(8.dp))
-                val forecast = state.forecastDayUiState.firstOrNull()
-                Text(
-                    text = "${forecast?.maximumTemperatureCelsius}°C / ${
-                        forecast?.minimumTemperatureCelsius
-                    }°C",
-                    fontSize = 24.sp,
-                    color = Color.White
-                )
-
             }
-            Column(modifier = Modifier.padding(top = 32.dp)) {
-                state.text?.let {
+            Column(
+                modifier = Modifier.fillMaxSize().align(Alignment.TopStart)
+                    .padding(start = 64.dp, top = 108.dp),
+            ) {
+                state.cityName?.let {
                     Text(
                         modifier = Modifier,
                         text = it,
-                        fontSize = 26.sp,
+                        fontSize = 36.sp,
                         color = Color.White,
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Bold
                     )
                 }
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    modifier = Modifier,
-                    text = "Feels like ${state.feelsLikeCelsius?.toInt()}C°",
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
-            }
-        }
-        Column(
-            modifier = Modifier.fillMaxSize().align(Alignment.TopStart)
-                .padding(start = 64.dp, top = 108.dp),
-        ) {
-            state.cityName?.let {
-                Text(
-                    modifier = Modifier,
-                    text = it,
-                    fontSize = 36.sp,
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            state.localTime?.takeLast(5)?.let {
-                Text(
-                    text = it,
-                    fontSize = 20.sp,
-                    color = Color.White
-                )
-            }
+                Spacer(modifier = Modifier.height(16.dp))
+                state.localTime?.takeLast(5)?.let {
+                    Text(
+                        text = it,
+                        fontSize = 20.sp,
+                        color = Color.White
+                    )
+                }
 
+            }
+            /// endregion
         }
-        /// endregion
+        //endregion
+
     }
 }

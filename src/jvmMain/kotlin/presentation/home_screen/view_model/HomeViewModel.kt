@@ -50,11 +50,14 @@ class HomeViewModel(
     }
 
     private suspend fun getCityName(){
+        _homeUiState.update { it.copy(isLoading = true) }
         _homeUiState.update {
             it.copy(
                 cityName = LocationManager.getLocation().city.lowercase()
             )
         }
+        _homeUiState.update { it.copy(isLoading = false, onError = null) }
+
     }
 
     fun updateSearchInput(newSearchInput: String) {
@@ -70,6 +73,7 @@ class HomeViewModel(
     }
 
     private fun getWeatherDetails() {
+        _homeUiState.update { it.copy(isLoading = true) }
         tryToExecute(
             call = { getWeatherDetailsUseCase(_homeUiState.value.cityName.toString()) },
             mapper = weatherDetailsUiMapper,
@@ -91,12 +95,15 @@ class HomeViewModel(
                 cloud = weatherDetailsUiState.cloud,
                 temperatureCelsius = weatherDetailsUiState.temperatureCelsius,
                 feelsLikeCelsius = weatherDetailsUiState.feelsLikeCelsius,
-                localTime = weatherDetailsUiState.localTime
+                localTime = weatherDetailsUiState.localTime,
+                isLoading = false,
+                onError = null
             )
         }
     }
 
     fun getCitySearchResult() {
+        _homeUiState.update { it.copy(isLoading = true) }
         tryToExecuteList(
             call = { getCitySearchResultUseCase(homeUiState.value.searchInput!!) },
             onSuccess = ::onSuccessGetCity,
@@ -106,13 +113,13 @@ class HomeViewModel(
     }
 
     private fun onSuccessGetCity(searchItemUIState: List<SearchItemUIState>) {
-        _homeUiState.update { it.copy(citySearchResult = searchItemUIState) }
+        _homeUiState.update { it.copy(citySearchResult = searchItemUIState, isLoading = false, onError = null) }
         println(" input ${homeUiState.value.searchInput}")
         println(" result ${homeUiState.value.citySearchResult}")
     }
 
     private fun getForecastDayWeather() {
-        println(_homeUiState.value.cityName.toString())
+        _homeUiState.update { it.copy(isLoading = true) }
         tryToExecuteList(
             call = { getForecastDayUseCase(_homeUiState.value.cityName.toString()) },
             onSuccess = ::onSuccessForecastDayWeather,
@@ -122,10 +129,11 @@ class HomeViewModel(
     }
 
     private fun onSuccessForecastDayWeather(forecastDayUiState: List<ForecastDayUiState>) {
-        _homeUiState.update { it.copy(forecastDayUiState = forecastDayUiState) }
+        _homeUiState.update { it.copy(forecastDayUiState = forecastDayUiState, isLoading = false, onError = null) }
     }
 
     private fun getForecastHourWeather() {
+        _homeUiState.update { it.copy(isLoading = true) }
         tryToExecuteList(
             call = { getForecastHourUseCase(_homeUiState.value.cityName.toString()) },
             onSuccess = ::onSuccessForecastHourWeather,
@@ -135,7 +143,7 @@ class HomeViewModel(
     }
 
     private fun onSuccessForecastHourWeather(forecastHourUiState: List<ForecastHourUiState>) {
-        _homeUiState.update { it.copy(forecastHourUiState = forecastHourUiState) }
+        _homeUiState.update { it.copy(forecastHourUiState = forecastHourUiState, isLoading = false, onError = null) }
     }
 
     private fun onError(th: Throwable) {
@@ -143,6 +151,7 @@ class HomeViewModel(
         _homeUiState.update {
             it.copy(
                 onError = listOf(errorMessage),
+                isLoading = false
             )
         }
     }
