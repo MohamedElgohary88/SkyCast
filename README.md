@@ -30,7 +30,7 @@ Sign up for a weather API key at WeatherAPI.com.
 # Screenshots
 1- ![splash](https://github.com/team-chocolate-cake/SkyCast/assets/87489620/a783a8df-1c31-4459-b1e3-b6cdaac2c08d)
 2- ![day](https://github.com/team-chocolate-cake/SkyCast/assets/87489620/8f95cb5b-c214-4b17-9172-9632a27cb298)
-3- ![night](https://github.com/team-chocolate-cake/SkyCast/assets/87489620/73b303e7-c878-4499-afde-37226e8083b0)
+3- ![night](https://github.com/team-chocolate-cake/SkyCast/assets/87489620/56cec4ec-7ed1-4a97-85b2-0b0982e9a1b1)
 
 
 # Contributions
