@@ -18,7 +18,7 @@ https://github.com/team-chocolate-cake/SkyCast.git
 Open the project in IntelliJ IDEA.
 
 ## Tech Stack
-Kotlin MultiPlatform: Write shared code across different platforms (desktop, android, ios).
+Kotlin MultiPlatform: Write shared code across different platforms (Windows - Mac - Linux).
 Ktor: HTTP client for making API requests.
 Koin: Dependency injection framework for managing dependencies.
 JetPack Compose: Declarative UI framework for building the user interface.
