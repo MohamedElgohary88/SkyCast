@@ -4,6 +4,8 @@
 
 <h3 align="center">Sky Cast is a multi-platform weather application that provides weather forecasts for various locations. It is built using Kotlin MultiPlatform, Ktor client, Koin for dependency injection, JetPack Compose for UI, and Kotlin coroutine for asynchronous programming.</h3>
 
+<p align="center">Case study: <a href="https://mohamedelgohary.dev/project/skycast/">https://mohamedelgohary.dev/project/skycast/</a></p>
+
 ## Features
 
 * Splash screen with animation
